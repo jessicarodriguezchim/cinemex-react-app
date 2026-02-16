@@ -1,0 +1,117 @@
+/* ============================================
+   CINEMEX - App Styles
+   ============================================ */
+
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* Layout principal */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding-bottom: 48px;
+}
+
+/* Hero section para Home */
+.hero {
+  background: linear-gradient(135deg, var(--cinemex-red) 0%, var(--cinemex-red-dark) 100%);
+  padding: 60px 24px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.hero h1 {
+  color: var(--cinemex-white);
+  margin-bottom: 16px;
+  font-size: 2.5rem;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Page header */
+.page-header {
+  background: linear-gradient(180deg, var(--cinemex-gray-dark) 0%, var(--cinemex-black) 100%);
+  padding: 40px 24px;
+  text-align: center;
+  border-bottom: 3px solid var(--cinemex-red);
+}
+
+.page-header h1 {
+  color: var(--cinemex-white);
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: var(--cinemex-gray-light);
+}
+
+/* Footer */
+.footer {
+  background: var(--cinemex-gray-dark);
+  padding: 32px 24px;
+  text-align: center;
+  margin-top: auto;
+  border-top: 3px solid var(--cinemex-red);
+}
+
+.footer p {
+  color: var(--cinemex-gray-light);
+  font-size: 0.9rem;
+}
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--cinemex-red);
+  margin-bottom: 8px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .hero {
+    padding: 40px 16px;
+  }
+  
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  .page-header {
+    padding: 32px 16px;
+  }
+}
