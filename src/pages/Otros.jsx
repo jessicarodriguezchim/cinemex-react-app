@@ -1,197 +1,138 @@
-import PromoCard from '../components/PromoCard'
+import { useState } from "react"
 
-/**
- * Página Otros - Cinemex
- * Muestra promociones, membresías, preventas y formatos especiales
- */
 function Otros() {
+  // useState para mostrar/ocultar detalles de cada sección
+  const [seccionActiva, setSeccionActiva] = useState("promociones")
+
+  // Datos de promociones
   const promociones = [
-    {
-      id: 1,
-      titulo: '2x1 en Boletos',
-      descripcion: 'Todos los martes y miércoles. Presenta tu tarjeta de crédito participante.',
-      imagen: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400',
-      tipo: 'promocion',
-      badge: '¡Aprovecha!'
-    },
-    {
-      id: 2,
-      titulo: 'Combo Cumpleañero',
-      descripcion: 'En tu cumpleaños, llévate un combo mediano GRATIS presentando tu INE.',
-      imagen: 'https://images.unsplash.com/photo-1514306191717-452ec28c7814?w=400',
-      tipo: 'promocion',
-      badge: 'Gratis'
-    }
+    { id: 1, titulo: "2x1 en Boletos", descripcion: "Martes y miércoles con tarjeta participante" },
+    { id: 2, titulo: "Combo Cumpleañero", descripcion: "Combo gratis en tu cumpleaños con INE" }
   ]
 
+  // Datos de membresías
   const membresias = [
-    {
-      id: 3,
-      titulo: 'Club Cinemex',
-      descripcion: 'Acumula puntos en cada compra y canjéalos por boletos, combos y más.',
-      imagen: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400',
-      tipo: 'membresia',
-      badge: 'Premium'
-    },
-    {
-      id: 4,
-      titulo: 'Cinemex Platino',
-      descripcion: 'Acceso exclusivo a salas VIP, asientos reclinables y servicio a tu lugar.',
-      imagen: 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400',
-      tipo: 'membresia',
-      badge: 'VIP'
-    }
+    { id: 1, titulo: "Club Cinemex", descripcion: "Acumula puntos y canjéalos por boletos" },
+    { id: 2, titulo: "Cinemex Platino", descripcion: "Acceso a salas VIP con servicio a tu lugar" }
   ]
 
+  // Datos de preventas
   const preventas = [
-    {
-      id: 5,
-      titulo: 'Avatar 3',
-      descripcion: 'Próximamente. Asegura tus boletos antes que nadie para el estreno.',
-      imagen: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400',
-      tipo: 'preventa',
-      badge: 'Preventa'
-    },
-    {
-      id: 6,
-      titulo: 'Deadpool & Wolverine',
-      descripcion: 'El crossover más esperado. ¡Compra tus boletos anticipados!',
-      imagen: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=400',
-      tipo: 'preventa',
-      badge: 'Estreno'
-    }
+    { id: 1, titulo: "Avatar 3", descripcion: "Próximamente - Asegura tus boletos" },
+    { id: 2, titulo: "Avengers 5", descripcion: "Estreno exclusivo - Preventa disponible" }
   ]
 
+  // Datos de formatos especiales
   const formatos = [
-    {
-      id: 7,
-      titulo: 'IMAX',
-      descripcion: 'La experiencia cinematográfica más inmersiva. Pantalla gigante y sonido envolvente.',
-      imagen: 'https://images.unsplash.com/photo-1595769816263-9b910be24d5f?w=400',
-      tipo: 'formato',
-      badge: 'Premium'
-    },
-    {
-      id: 8,
-      titulo: '4DX',
-      descripcion: 'Siente la película con asientos con movimiento, viento, agua y aromas.',
-      imagen: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400',
-      tipo: 'formato',
-      badge: '4D'
-    }
+    { id: 1, titulo: "IMAX", descripcion: "Pantalla gigante y sonido envolvente" },
+    { id: 2, titulo: "4DX", descripcion: "Asientos con movimiento, viento y aromas" }
   ]
 
-  const renderSeccion = (titulo, items, icono) => (
-    <section style={{ marginBottom: '48px' }}>
-      <h2 style={{
-        fontFamily: "'Montserrat', sans-serif",
-        fontSize: '1.5rem',
-        fontWeight: 700,
-        color: '#FFFFFF',
-        marginBottom: '24px',
-        paddingLeft: '16px',
-        borderLeft: '4px solid #E71235'
-      }}>
-        {icono} {titulo}
-      </h2>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-        gap: '24px'
-      }}>
-        {items.map(item => (
-          <PromoCard
-            key={item.id}
-            titulo={item.titulo}
-            descripcion={item.descripcion}
-            imagen={item.imagen}
-            tipo={item.tipo}
-            badge={item.badge}
-          />
-        ))}
-      </div>
-    </section>
-  )
+  // Función para obtener los datos según la sección activa
+  function obtenerDatos() {
+    switch (seccionActiva) {
+      case "promociones": return promociones
+      case "membresias": return membresias
+      case "preventas": return preventas
+      case "formatos": return formatos
+      default: return []
+    }
+  }
 
   return (
-    <div>
-      {/* Header de página */}
-      <div style={{
-        background: 'linear-gradient(135deg, #2D2D2D 0%, #1A1A1A 100%)',
-        padding: '48px 24px',
-        textAlign: 'center',
-        borderBottom: '3px solid #F8C008'
-      }}>
-        <h1 style={{
-          fontFamily: "'Montserrat', sans-serif",
-          fontSize: '2.5rem',
-          fontWeight: 800,
-          color: '#FFFFFF',
-          marginBottom: '12px'
-        }}>
-          ✨ Más de Cinemex
-        </h1>
-        <p style={{
-          color: '#B0B0B0',
-          fontSize: '1.1rem',
-          maxWidth: '500px',
-          margin: '0 auto'
-        }}>
-          Descubre promociones, membresías exclusivas, preventas y formatos especiales
-        </p>
-      </div>
+    <main
+      style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        padding: "16px",
+        color: "white"
+      }}
+    >
+      <h2 style={{ marginBottom: "24px" }}>⭐ Más de Cinemex</h2>
 
-      {/* Contenido */}
-      <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '48px 24px'
-      }}>
-        {renderSeccion('Promociones', promociones, '🎉')}
-        {renderSeccion('Membresías', membresias, '⭐')}
-        {renderSeccion('Preventas', preventas, '🎬')}
-        {renderSeccion('Formatos Especiales', formatos, '🎥')}
-      </div>
-
-      {/* Banner CTA */}
-      <div style={{
-        background: 'linear-gradient(135deg, #E71235 0%, #C50E2C 100%)',
-        padding: '48px 24px',
-        textAlign: 'center'
-      }}>
-        <h2 style={{
-          fontFamily: "'Montserrat', sans-serif",
-          fontSize: '2rem',
-          fontWeight: 800,
-          color: '#FFFFFF',
-          marginBottom: '16px'
-        }}>
-          ¿Listo para vivir la experiencia Cinemex?
-        </h2>
-        <p style={{
-          color: 'rgba(255,255,255,0.9)',
-          fontSize: '1.1rem',
-          marginBottom: '24px'
-        }}>
-          Descarga nuestra app y obtén beneficios exclusivos
-        </p>
-        <button style={{
-          background: '#F8C008',
-          color: '#1A1A1A',
-          border: 'none',
-          padding: '16px 40px',
-          borderRadius: '30px',
-          fontFamily: "'Montserrat', sans-serif",
-          fontWeight: 700,
-          fontSize: '1.1rem',
-          cursor: 'pointer'
-        }}>
-          Descargar App
+      {/* Tabs de navegación con onClick */}
+      <div style={{ display: "flex", gap: "8px", marginBottom: "24px", flexWrap: "wrap" }}>
+        <button
+          onClick={() => setSeccionActiva("promociones")}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: seccionActiva === "promociones" ? "#E71235" : "#444",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer"
+          }}
+        >
+          🎉 Promociones
+        </button>
+        <button
+          onClick={() => setSeccionActiva("membresias")}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: seccionActiva === "membresias" ? "#E71235" : "#444",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer"
+          }}
+        >
+          ⭐ Membresías
+        </button>
+        <button
+          onClick={() => setSeccionActiva("preventas")}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: seccionActiva === "preventas" ? "#E71235" : "#444",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer"
+          }}
+        >
+          🎬 Preventas
+        </button>
+        <button
+          onClick={() => setSeccionActiva("formatos")}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: seccionActiva === "formatos" ? "#E71235" : "#444",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer"
+          }}
+        >
+          🎥 Formatos
         </button>
       </div>
-    </div>
+
+      {/* Contenido dinámico según sección activa */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "16px"
+        }}
+      >
+        {obtenerDatos().map((item) => (
+          <div
+            key={item.id}
+            style={{
+              backgroundColor: "#2d2d2d",
+              padding: "20px",
+              borderRadius: "8px",
+              borderLeft: "4px solid #F8C008"
+            }}
+          >
+            <h3 style={{ marginBottom: "8px" }}>{item.titulo}</h3>
+            <p style={{ color: "#aaa" }}>{item.descripcion}</p>
+          </div>
+        ))}
+      </div>
+    </main>
   )
 }
 
 export default Otros
+
 

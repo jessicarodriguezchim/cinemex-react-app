@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "titulo": "K-Pop Demon Hunters",
+    "imagen": "https://cdn.forbes.com.mx/2025/12/K-Pop-Demon-Hunters.webp",
+    "descripcion": "Un grupo de idols de K-Pop descubre que tienen poderes sobrenaturales y deben usarlos para combatir demonios."
+  },
+  {
+    "id": 2,
+    "titulo": "Five Nights At Freddys",
+    "imagen": "https://image.tmdb.org/t/p/w500/j9mH1pr3IahtraTWxVEMANmPSGR.jpg",
+    "descripcion": "Un guardia de seguridad descubre que los animatrónicos de una pizzería cobran vida por la noche."
+  },
+  {
+    "id": 3,
+    "titulo": "Angry Birds",
+    "imagen": "https://imagenes.hobbyconsolas.com/files/image_1280_720/uploads/imagenes/2023/04/25/69013e172631a.jpeg",
+    "descripcion": "Red, Chuck y Bomb deben unir fuerzas para proteger su isla de una nueva amenaza."
+  },
+  {
+    "id": 4,
+    "titulo": "Minecraft",
+    "imagen": "https://image.tmdb.org/t/p/w500/yFHHfHcUgGAxziP1C3lLt0q2T4s.jpg",
+    "descripcion": "Una aventura épica en el mundo de bloques donde héroes deben salvar su mundo."
+  },
+  {
+    "id": 5,
+    "titulo": "Spider-Man",
+    "imagen": "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+    "descripcion": "Peter Parker enfrenta villanos de otros universos que amenazan todo lo que ama."
+  }
+]

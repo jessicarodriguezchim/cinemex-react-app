@@ -1,229 +1,138 @@
-/**
- * Página Detalle - Cinemex
- * Muestra información detallada de una película y horarios
- */
-function Detalle({ cambiarVista }) {
-  const horarios = ['14:30', '16:45', '19:00', '21:15', '23:30']
-  const formatos = ['2D', '3D', 'IMAX', '4DX']
+import { useState } from "react"
+
+function Detalle({ pelicula }) {
+  // useState para el formulario controlado
+  const [nombre, setNombre] = useState("")
+  const [cantidadBoletos, setCantidadBoletos] = useState(1)
+  const [mensaje, setMensaje] = useState("")
+
+  // Si no hay película seleccionada
+  if (!pelicula) {
+    return (
+      <main style={{ padding: "24px", textAlign: "center", color: "white" }}>
+        <h2>No hay película seleccionada</h2>
+        <p>Selecciona una película desde la cartelera.</p>
+      </main>
+    )
+  }
+
+  // Evento onSubmit - Maneja el envío del formulario
+  function manejarCompra(e) {
+    e.preventDefault()
+
+    // Mostrar mensaje de confirmación
+    setMensaje(
+      `¡Gracias ${nombre}! Compraste ${cantidadBoletos} boleto(s) para "${pelicula.titulo}"`
+    )
+
+    // Limpiar formulario
+    setNombre("")
+    setCantidadBoletos(1)
+  }
 
   return (
-    <div>
-      {/* Header con imagen de fondo */}
-      <div style={{
-        background: 'linear-gradient(180deg, rgba(26,26,26,0.3) 0%, #1A1A1A 100%), url("https://image.tmdb.org/t/p/original/j9mH1pr3IahtraTWxVEMANmPSGR.jpg")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
-        padding: '80px 24px',
-        minHeight: '400px',
-        display: 'flex',
-        alignItems: 'flex-end'
-      }}>
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          width: '100%',
-          display: 'flex',
-          gap: '32px',
-          flexWrap: 'wrap'
-        }}>
-          {/* Poster */}
-          <img
-            src="https://image.tmdb.org/t/p/w500/j9mH1pr3IahtraTWxVEMANmPSGR.jpg"
-            alt="Five Nights At Freddys"
+    <main
+      style={{
+        padding: "24px",
+        maxWidth: "800px",
+        margin: "0 auto",
+        color: "white"
+      }}
+    >
+      <h2>{pelicula.titulo}</h2>
+
+      <img
+        src={pelicula.imagen}
+        alt={pelicula.titulo}
+        style={{
+          width: "100%",
+          maxHeight: "400px",
+          objectFit: "cover",
+          borderRadius: "8px",
+          marginBottom: "16px"
+        }}
+      />
+
+      <p style={{ marginBottom: "24px" }}>{pelicula.descripcion}</p>
+
+      <hr style={{ margin: "24px 0", borderColor: "#444" }} />
+
+      <h3>🎟️ Comprar Boletos</h3>
+
+      {/* Formulario controlado con onSubmit */}
+      <form onSubmit={manejarCompra}>
+        {/* Input nombre con onChange */}
+        <div style={{ marginBottom: "12px" }}>
+          <label>Nombre:</label>
+          <input
+            type="text"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
             style={{
-              width: '200px',
-              borderRadius: '12px',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.5)'
+              display: "block",
+              width: "100%",
+              padding: "10px",
+              marginTop: "4px",
+              borderRadius: "4px",
+              border: "1px solid #ccc"
             }}
+            required
           />
-          
-          {/* Info básica */}
-          <div style={{ flex: 1, minWidth: '280px' }}>
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
-              <span style={{
-                background: '#E71235',
-                color: '#FFFFFF',
-                padding: '4px 12px',
-                borderRadius: '20px',
-                fontSize: '0.8rem',
-                fontWeight: 600
-              }}>
-                Terror
-              </span>
-              <span style={{
-                background: '#4A4A4A',
-                color: '#FFFFFF',
-                padding: '4px 12px',
-                borderRadius: '20px',
-                fontSize: '0.8rem'
-              }}>
-                1h 50min
-              </span>
-              <span style={{
-                background: '#4A4A4A',
-                color: '#FFFFFF',
-                padding: '4px 12px',
-                borderRadius: '20px',
-                fontSize: '0.8rem'
-              }}>
-                B-15
-              </span>
-            </div>
-            
-            <h1 style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontSize: '2.5rem',
-              fontWeight: 800,
-              color: '#FFFFFF',
-              marginBottom: '12px'
-            }}>
-              Five Nights At Freddy's
-            </h1>
-            
-            <p style={{
-              color: '#B0B0B0',
-              fontSize: '1rem',
-              lineHeight: 1.6
-            }}>
-              Un guardia de seguridad recién contratado en Freddy Fazbear's Pizza 
-              descubre que el turno de noche no será tan fácil de sobrevivir.
-            </p>
-          </div>
         </div>
-      </div>
 
-      {/* Contenido principal */}
-      <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '48px 24px'
-      }}>
-        {/* Selección de formato */}
-        <section style={{ marginBottom: '40px' }}>
-          <h2 style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontSize: '1.25rem',
-            fontWeight: 700,
-            color: '#FFFFFF',
-            marginBottom: '16px'
-          }}>
-            Selecciona formato
-          </h2>
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-            {formatos.map((formato, index) => (
-              <button
-                key={formato}
-                style={{
-                  background: index === 0 ? '#E71235' : '#2D2D2D',
-                  color: '#FFFFFF',
-                  border: '2px solid',
-                  borderColor: index === 0 ? '#E71235' : '#4A4A4A',
-                  padding: '12px 24px',
-                  borderRadius: '8px',
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                {formato}
-              </button>
-            ))}
-          </div>
-        </section>
+        {/* Input cantidad con onChange */}
+        <div style={{ marginBottom: "12px" }}>
+          <label>Cantidad de boletos:</label>
+          <input
+            type="number"
+            min="1"
+            max="10"
+            value={cantidadBoletos}
+            onChange={(e) => setCantidadBoletos(e.target.value)}
+            style={{
+              display: "block",
+              width: "100%",
+              padding: "10px",
+              marginTop: "4px",
+              borderRadius: "4px",
+              border: "1px solid #ccc"
+            }}
+            required
+          />
+        </div>
 
-        {/* Horarios */}
-        <section style={{ marginBottom: '40px' }}>
-          <h2 style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontSize: '1.25rem',
-            fontWeight: 700,
-            color: '#FFFFFF',
-            marginBottom: '16px'
-          }}>
-            Horarios disponibles - Hoy
-          </h2>
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-            {horarios.map(horario => (
-              <button
-                key={horario}
-                style={{
-                  background: '#2D2D2D',
-                  color: '#FFFFFF',
-                  border: '2px solid #4A4A4A',
-                  padding: '16px 24px',
-                  borderRadius: '8px',
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 700,
-                  fontSize: '1.1rem',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.borderColor = '#F8C008'
-                  e.target.style.color = '#F8C008'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.borderColor = '#4A4A4A'
-                  e.target.style.color = '#FFFFFF'
-                }}
-              >
-                {horario}
-              </button>
-            ))}
-          </div>
-        </section>
-
-        {/* Sinopsis */}
-        <section style={{
-          background: '#2D2D2D',
-          borderRadius: '12px',
-          padding: '24px',
-          marginBottom: '40px'
-        }}>
-          <h2 style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontSize: '1.25rem',
-            fontWeight: 700,
-            color: '#FFFFFF',
-            marginBottom: '16px'
-          }}>
-            Sinopsis
-          </h2>
-          <p style={{
-            color: '#B0B0B0',
-            fontSize: '1rem',
-            lineHeight: 1.7
-          }}>
-            Después de aceptar un trabajo como guardia de seguridad nocturno en Freddy 
-            Fazbear's Pizza, un hombre perturbado descubre que los animatrónicos del 
-            lugar cobran vida por la noche. Mientras lucha por sobrevivir cinco noches 
-            aterradoras, también debe enfrentarse a los oscuros secretos de su pasado 
-            que están conectados con el restaurante y sus siniestros habitantes mecánicos.
-          </p>
-        </section>
-
-        {/* Botón de regreso */}
+        {/* Botón submit */}
         <button
-          onClick={() => cambiarVista('cartelera')}
+          type="submit"
           style={{
-            background: 'transparent',
-            color: '#F8C008',
-            border: '2px solid #F8C008',
-            padding: '14px 28px',
-            borderRadius: '8px',
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 600,
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
+            padding: "12px 24px",
+            backgroundColor: "#E71235",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            fontWeight: "bold"
           }}
         >
-          ← Volver a Cartelera
+          Comprar
         </button>
-      </div>
-    </div>
+      </form>
+
+      {/* Mensaje de confirmación dinámico */}
+      {mensaje && (
+        <p
+          style={{
+            marginTop: "20px",
+            padding: "16px",
+            backgroundColor: "#4CAF50",
+            borderRadius: "4px",
+            color: "white"
+          }}
+        >
+          ✅ {mensaje}
+        </p>
+      )}
+    </main>
   )
 }
 
