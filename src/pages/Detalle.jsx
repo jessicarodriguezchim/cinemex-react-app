@@ -1,17 +1,37 @@
 import { useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import peliculas from "../peliculas.json"
 
-function Detalle({ pelicula }) {
+function Detalle() {
+  const navigate = useNavigate()
+  const { id } = useParams()
+  const pelicula = peliculas.find((item) => item.id === Number(id))
+
   // useState para el formulario controlado
   const [nombre, setNombre] = useState("")
   const [cantidadBoletos, setCantidadBoletos] = useState(1)
   const [mensaje, setMensaje] = useState("")
 
-  // Si no hay película seleccionada
+  // Si la pelicula del id no existe
   if (!pelicula) {
     return (
       <main style={{ padding: "24px", textAlign: "center", color: "white" }}>
-        <h2>No hay película seleccionada</h2>
-        <p>Selecciona una película desde la cartelera.</p>
+        <h2>Pelicula no encontrada</h2>
+        <p>Selecciona una pelicula valida desde la cartelera.</p>
+        <button
+          onClick={() => navigate("/cartelera")}
+          style={{
+            marginTop: "12px",
+            padding: "10px 16px",
+            backgroundColor: "#E71235",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer"
+          }}
+        >
+          Ir a cartelera
+        </button>
       </main>
     )
   }
@@ -88,7 +108,7 @@ function Detalle({ pelicula }) {
             min="1"
             max="10"
             value={cantidadBoletos}
-            onChange={(e) => setCantidadBoletos(e.target.value)}
+            onChange={(e) => setCantidadBoletos(Number(e.target.value))}
             style={{
               display: "block",
               width: "100%",

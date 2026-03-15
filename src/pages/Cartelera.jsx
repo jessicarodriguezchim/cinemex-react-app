@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom"
 import MovieCard from "../components/MovieCard"
 import peliculas from "../peliculas.json"
 
-function Cartelera({ verDetalle }) {
+function Cartelera() {
+  const navigate = useNavigate()
+
   return (
     <main
       style={{
@@ -26,7 +29,7 @@ function Cartelera({ verDetalle }) {
             key={pelicula.id}
             title={pelicula.titulo}
             image={pelicula.imagen}
-            onVerDetalle={() => verDetalle(pelicula)}
+            onVerDetalle={() => navigate(`/pelicula/${pelicula.id}`)}
           />
         ))}
       </div>
