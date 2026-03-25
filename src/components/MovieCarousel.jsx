@@ -4,9 +4,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import MovieCard from "./MovieCard";
 
-function MovieCarousel({ movies }) {
-  // Verificación de seguridad: si no hay películas, no renderiza nada
-  if (!movies) return null;
+function MovieCarousel({ movies, onVerDetalle }) {
+  if (!movies) return null
 
   return (
     <Swiper
@@ -20,6 +19,9 @@ function MovieCarousel({ movies }) {
           <MovieCard
             title={movie.titulo}
             image={movie.imagen}
+            onVerDetalle={
+              onVerDetalle ? () => onVerDetalle(movie) : undefined
+            }
           />
         </SwiperSlide>
       ))}

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import peliculas from "../peliculas.json"
+import peliculas from "../data/peliculas.json"
 
 function Detalle() {
   const navigate = useNavigate()

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import MovieCard from "../components/MovieCard"
-import peliculas from "../peliculas.json"
+import peliculas from "../data/peliculas.json"
 
 function Cartelera() {
   const navigate = useNavigate()

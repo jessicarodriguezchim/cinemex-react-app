@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import MovieCard from "../components/MovieCard"
-import peliculas from "../peliculas.json"
-import MovieCarousel from "../components/MovieCarousel";
+import MovieCarousel from "../components/MovieCarousel"
+import peliculas from "../data/peliculas.json"
+import { NEWS_POSTS_URL } from "../config/api"
 
 function Home() {
   const navigate = useNavigate()
@@ -10,7 +11,7 @@ function Home() {
   const [cargando, setCargando] = useState(true)
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts?_limit=3")
+    fetch(NEWS_POSTS_URL)
       .then((respuesta) => respuesta.json())
       .then((datos) => {
         setNoticias(datos)
@@ -30,7 +31,10 @@ function Home() {
         {/* === PASO 1: SECCIÓN DE CARRUSEL (ESTRENOS) === */}
         <section style={{ marginBottom: "40px" }}>
           <h2 style={{ color: "white", marginBottom: "16px" }}>⭐ ESTRENOS</h2>
-          <MovieCarousel movies={peliculas} />
+          <MovieCarousel
+            movies={peliculas}
+            onVerDetalle={(pelicula) => navigate(`/pelicula/${pelicula.id}`)}
+          />
         </section>
 
         <h2 style={{ color: "white", marginBottom: "24px" }}>
