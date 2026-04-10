@@ -1,22 +1,10 @@
 import { useState } from "react"
+import alimentos from "../data/alimentos.json"
 
 function Alimentos() {
-  // useState para seleccionar categoría
   const [categoria, setCategoria] = useState("todos")
 
-  // Datos de alimentos
-  const alimentos = [
-    { id: 1, nombre: "Palomitas Grandes", precio: 95, categoria: "Comestibles" },
-    { id: 2, nombre: "Refresco Grande", precio: 75, categoria: "Bebidas" },
-    { id: 3, nombre: "Hot Dog", precio: 85, categoria: "Comestibles" },
-    { id: 4, nombre: "Nachos con Queso", precio: 90, categoria: "Comestibles" },
-    { id: 5, nombre: "ICEE", precio: 65, categoria: "Bebidas" },
-    { id: 6, nombre: "M&Ms", precio: 55, categoria: "Snacks" },
-    { id: 7, nombre: "Gomitas", precio: 45, categoria: "Snacks" },
-    { id: 8, nombre: "Café", precio: 55, categoria: "Bebidas" }
-  ]
-
-  // Filtrar alimentos por categoría
+  // filtro por categoría
   const alimentosFiltrados = categoria === "todos"
     ? alimentos
     : alimentos.filter((item) => item.categoria === categoria)

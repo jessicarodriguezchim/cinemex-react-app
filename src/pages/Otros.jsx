@@ -1,41 +1,21 @@
 import { useState } from "react"
+import otrosData from "../data/otros.json"
 
 function Otros() {
-  // useState para mostrar/ocultar detalles de cada sección
   const [seccionActiva, setSeccionActiva] = useState("promociones")
 
-  // Datos de promociones
-  const promociones = [
-    { id: 1, titulo: "2x1 en Boletos", descripcion: "Martes y miércoles con tarjeta participante" },
-    { id: 2, titulo: "Combo Cumpleañero", descripcion: "Combo gratis en tu cumpleaños con INE" }
-  ]
-
-  // Datos de membresías
-  const membresias = [
-    { id: 1, titulo: "Club Cinemex", descripcion: "Acumula puntos y canjéalos por boletos" },
-    { id: 2, titulo: "Cinemex Platino", descripcion: "Acceso a salas VIP con servicio a tu lugar" }
-  ]
-
-  // Datos de preventas
-  const preventas = [
-    { id: 1, titulo: "Avatar 3", descripcion: "Próximamente - Asegura tus boletos" },
-    { id: 2, titulo: "Avengers 5", descripcion: "Estreno exclusivo - Preventa disponible" }
-  ]
-
-  // Datos de formatos especiales
-  const formatos = [
-    { id: 1, titulo: "IMAX", descripcion: "Pantalla gigante y sonido envolvente" },
-    { id: 2, titulo: "4DX", descripcion: "Asientos con movimiento, viento y aromas" }
-  ]
-
-  // Función para obtener los datos según la sección activa
   function obtenerDatos() {
     switch (seccionActiva) {
-      case "promociones": return promociones
-      case "membresias": return membresias
-      case "preventas": return preventas
-      case "formatos": return formatos
-      default: return []
+      case "promociones":
+        return otrosData.promociones
+      case "membresias":
+        return otrosData.membresias
+      case "preventas":
+        return otrosData.preventas
+      case "formatos":
+        return otrosData.formatos
+      default:
+        return []
     }
   }
 

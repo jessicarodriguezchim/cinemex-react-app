@@ -1,0 +1,18 @@
+{
+  "promociones": [
+    { "id": 1, "titulo": "2x1 en Boletos", "descripcion": "Martes y miércoles con tarjeta participante" },
+    { "id": 2, "titulo": "Combo Cumpleañero", "descripcion": "Combo gratis en tu cumpleaños con INE" }
+  ],
+  "membresias": [
+    { "id": 1, "titulo": "Club Cinemex", "descripcion": "Acumula puntos y canjéalos por boletos" },
+    { "id": 2, "titulo": "Cinemex Platino", "descripcion": "Acceso a salas VIP con servicio a tu lugar" }
+  ],
+  "preventas": [
+    { "id": 1, "titulo": "Avatar 3", "descripcion": "Próximamente - Asegura tus boletos" },
+    { "id": 2, "titulo": "Avengers 5", "descripcion": "Estreno exclusivo - Preventa disponible" }
+  ],
+  "formatos": [
+    { "id": 1, "titulo": "IMAX", "descripcion": "Pantalla gigante y sonido envolvente" },
+    { "id": 2, "titulo": "4DX", "descripcion": "Asientos con movimiento, viento y aromas" }
+  ]
+}
